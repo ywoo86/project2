@@ -4,7 +4,8 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const flash = require('connect-flash');
-// const dotenv = require('dotenv').config();
+const dotenv = require('dotenv').config();
+var request = require('request');
 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
@@ -19,6 +20,19 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
+
+app.get('/search/:id',function(req,res){
+  var id = req.params.id;
+
+  var url = 'http://api.brewerydb.com/v2/beers?name='+id+'&key='+process.env.BEER;
+
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body);
+      res.send(JSON.parse(body));
+    }
+  })
+});
 
 app.use(flash());
 
