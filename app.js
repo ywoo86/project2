@@ -21,6 +21,8 @@ app.use(session({
   cookie: { secure: false }
 }));
 
+
+// how we got the search term from index and call the api from server side
 app.get('/search/:id',function(req,res){
   var id = req.params.id;
 
