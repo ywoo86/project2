@@ -3,11 +3,12 @@ $(function(){
   $('button').on('click', function(event){
     event.preventDefault();
 
-    var getURL = getData();
+    // var getURL = getData();
+    var value = getData();
 
 
     $.ajax({
-      "url": getURL,
+      "url": "http://localhost:3000/search/"+value,
       "method": "GET",
       "success": function(beerData){
         // append beer data names to the DOM
@@ -26,9 +27,10 @@ $(function(){
     // this function will read the value of the text box
     // returns the formatted URL
     var $beertextbox = $('#beer-search-textbox').val();
-    var keyIEIO  = BEER;
+    return $beertextbox;
+    // var keyIEIO  = BEER;
 
-    return('http://api.brewerydb.com/v2/beers?name='+$beertextbox+'&key='+keyIEIO);
+    // return('http://api.brewerydb.com/v2/beers?name='+$beertextbox+'&key='+keyIEIO);
   };
 
   // var appendData = function(data){
@@ -37,7 +39,10 @@ $(function(){
   //   var $li =
   // }
 
-
+// root.data[0].name
+// root.data[0].abv
+// root.data[0].style.name
+// root.data[0].style.description
 
 
 
