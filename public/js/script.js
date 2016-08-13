@@ -26,6 +26,52 @@ $(function(){
       })
   })
 
+  $('#deletebeer').on('click', function(event){
+    event.preventDefault();
+
+    var id = $(this).attr('data-id');
+    console.log(id);
+
+    $.ajax({
+      "url":"http://localhost:3000/beers/"+id,
+      "method": "delete",
+      "success": function(data){
+        console.log('its gone');
+        var $card = $('.whole-card');
+        var $h1 = $('h1');
+        $h1.text('Delete Successful');
+        $card.remove();
+
+        setTimeout(function(){
+          location.replace('/');
+        }, 1000);
+      },
+      "error": function(){
+        console.log('error');
+      }
+    })
+  })
+
+  $('#edituser').on('submit', function(event){
+    event.preventDefault();
+
+    var id = $(this).attr('data-id');
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var password = $('#password').val();
+
+    var user = {id: id, email: email, password: password};
+
+    $.ajax({
+      "url": "http://localhost:3000/sessions/"+id,
+      "method": "put",
+      "data": user,
+      "success": function(data){
+        console.log('AOK');
+        location.replace('/sessions/new');
+      }
+    })
+  })
 
 
 

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="border-container">
+        <h1>Edit User Account</h1>
+        <form id="edituser" data-id={{id}}>
+          <label>Name: <input id="name" type="text" value="{{name}}"></label><br/>
+          <label>Email: <input id="email" type="text" value="{{email}}"></label><br/>
+          <label>Password: <input id="password" type="text" value="{{password}}"></label><br/>
+          <div class="col-lg-10 col-lg-offset-2">
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -5,6 +5,17 @@ const pgp = require('pg-promise')();
 const db3 = pgp('postgres://youngwoo@localhost:5432/auth');
 const mustache = require('mustache-express');
 
+router.delete('/:id', function(req, res){
+  var id = req.params.id;
+
+  db3.none("DELETE FROM beers WHERE id=$1", [id]).then(function(){
+    res.send({'delete': true});
+  })
+})
+
+
+
+
 router.get('/:id', function(req, res){
   var id = req.params.id;
   console.log('beer = ', id);
@@ -42,7 +53,7 @@ module.exports = router;
 // app.get('/search/:id',function(req,res){
 //   var id = req.params.id;
 
-//   var url = 'http://api.brewerydb.com/v2/beers?name='+id+'&key='+process.env.BEER;
+//   var url = 'http://api.brewerydb.com/v2/beers?name='+id+'&key='+process.env.KEY;
 
 //   request(url, function (error, response, body) {
 //     if (!error && response.statusCode == 200) {
