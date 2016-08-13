@@ -21,21 +21,6 @@ app.use(session({
   cookie: { secure: false }
 }));
 
-
-// how we got the search term from index and call the api from server side
-app.get('/search/:id',function(req,res){
-  var id = req.params.id;
-
-  var url = 'http://api.brewerydb.com/v2/beers?name='+id+'&key='+process.env.BEER;
-
-  request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log(body);
-      res.send(JSON.parse(body));
-    }
-  })
-});
-
 app.use(flash());
 
 app.listen(3000, function () {

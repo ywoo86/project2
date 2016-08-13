@@ -8,4 +8,15 @@ h1 {
   margin-bottom: 40px;
 }
 
-.center-block { float: none }
+.center-block {
+  float: none
+}
+
+#search-beer-btn {
+  margin-top: 15px;
+}
+
+.beer-listing {
+  padding-left: 10%;
+}
+
