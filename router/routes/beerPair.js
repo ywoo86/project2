@@ -30,16 +30,16 @@ router.get('/:id', function(req, res){
 
     var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.739885,-73.990082&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
 
-    request(url, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body);
-        beer_pairing.foodInfo = body;
-        res.render('show', beer_pairing);
-      }
+    // request(url, function(error, response, body) {
+    //   if (!error && response.statusCode == 200) {
+    //     console.log(body);
+    //     beer_pairing.foodInfo = body;
+    //     res.render('show', beer_pairing);
+    //   }
 
     }) // end of request
 
-    // res.render('show', beer_pairing);
+    res.render('show', beer_pairing);
   }) // end of db3 getting beer
 }) // end of router get request
 
