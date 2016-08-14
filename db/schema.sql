@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS beers;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  zipcode INTEGER,
   email VARCHAR(255) UNIQUE,
   password_digest VARCHAR(255)
 );

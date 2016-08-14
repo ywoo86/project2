@@ -40,13 +40,15 @@ var logout = function(req, res, next){
 };
 
 var create_user = function(req, res, next){
+  var name = req.body.name;
+  var zipcode = req.body.zipcode;
   var email = req.body.email;
   var password = req.body.password;
 
   bcrypt.hash(password, 10, function(err, hashed_password){
     db.none(
-      "INSERT INTO users (email, password_digest) VALUES ($1, $2)",
-      [email, hashed_password]
+      "INSERT INTO users (name, zipcode, email, password_digest) VALUES ($1, $2, $3, $4)",
+      [name, zipcode, email, hashed_password]
     ).catch(function(){
       res.error = 'Error. User could not be created.';
       next();

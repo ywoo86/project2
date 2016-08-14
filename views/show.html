@@ -16,7 +16,7 @@
   <div class="main-container">
     <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Logo</a>
+        <a href="/" class="brand-logo"><img class="beer-logo" src="https://cdn.shopify.com/s/files/1/1378/6333/collections/beer_grande.png?v=1468119341" /></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="#">Account</a></li>
           <li><a href="/sessions/logout">Logout</a></li>
@@ -33,19 +33,33 @@
           <div class="card-panel light-grey darken-1">
             <div class="card-content white text">
               {{#beerInfo}}
-              <p>{{name}} -- {{country}}</p>
+              <h5>{{name}}</h5>
+              <ul>
+                <li>{{category}}</li>
+                <li>{{brewery}} Brewery</li>
+                <li>{{country}}</li><br/>
+                <li>Flavor Profile: {{flavors}}</li>
+              </ul>
             </div>
             <div class="card-action">
               <a id="deletebeer" data-id={{id}} href="#">Delete</a>
+              <a id="editbeer" data-id={{id}} href="#">Edit</a>
             </div>
               {{/beerInfo}}
           </div>
         </div>
 
-        <div class="google-places-results col s5">
-          {{#foodInfo}}
-          <p>{{name}}</p>
-          {{/foodInfo}}
+        <div class="whole-card col s5">
+          <div class="card-panel light-grey darken-1">
+            <div class="card-content white text">
+            <ul>
+            {{#foodInfo}}
+              <li>{{name}}</li>
+              <li>{{vicinity}}</li><br/>
+            {{/foodInfo}}
+            </ul>
+            </div>
+          </div>
         </div>
 
       </div>
