@@ -18,7 +18,7 @@ router.get('/logout', db.logout, function(req, res){
   res.redirect('/');
 });
 
-router.get('/account', function(req, res){
+router.get('/edit', function(req, res){
   var email = req.session.user.email;
   db1.one("SELECT id, name, zipcode, email FROM users WHERE email = $1", [email])
   .then(function(userInfo){
@@ -27,7 +27,7 @@ router.get('/account', function(req, res){
 });
 
 
-router.post('/account/:id', function(req, res){
+router.post('/edit/:id', function(req, res){
   var user = req.body;
   var id = req.params.id;
   db1.none("UPDATE users SET name=$1, zipcode=$2, email=$3 WHERE id=$4", [user.name, user.zipcode, user.email, id])
