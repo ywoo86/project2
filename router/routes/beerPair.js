@@ -40,7 +40,7 @@ router.get('/:id', function(req, res){
 
         urlStr2 = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
 
-        request(urlStr, function(error, response, body) {
+        request(urlStr2, function(error, response, body) {
           if (!error && response.statusCode == 200) {
             // var foodInfo ={};
             var bodyparsed = JSON.parse(body);
