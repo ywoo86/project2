@@ -33,9 +33,9 @@ router.get('/:id', function(req, res){
 
     request(urlStr, function(error, response, body){
       if (!error && response.statusCode == 200) {
-        console.log(body);
-
-        console.log('latitute: ',body.geometry.location.lat);
+        console.log(JSON.parse(body));
+        body = JSON.parse(body);
+        console.log('latitute: ',body.results[0].geometry.location.lat);
         // location.lat = body.geometry.location.lat;
 
         console.log('longitute: ',body.geometry.location.lng);
