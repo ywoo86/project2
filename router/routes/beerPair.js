@@ -42,11 +42,10 @@ router.get('/:id', function(req, res){
 
         request(urlStr2, function(error, response, body) {
           if (!error && response.statusCode == 200) {
-            // var foodInfo ={};
+            var foodInfo ={};
             var bodyparsed = JSON.parse(body);
+
             beer_pairing.foodInfo = bodyparsed;
-            console.log('----------------UPTOHERE-------------');
-            console.log(beer_pairing);
           }
         }) // end of api request to get list of restaurants
 
