@@ -39,16 +39,21 @@ router.get('/:id', function(req, res){
         location.lng = bodyparsed.results[0].geometry.location.lng;
 
         urlStr2 = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
-        console.log(urlStr2);
+
+        request(urlStr, function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            // var foodInfo ={};
+            var bodyparsed = JSON.parse(body);
+            beer_pairing.foodInfo = body;
+            console.log('----------------UPTOHERE-------------');
+            console.log(beer_pairing);
+          }
+        }) // end of api request to get list of restaurants
+
       }
     }); // end of api call to change user zipcode to longitute and latitude
 
 
-    // request(urlStr, function(error, response, body) {
-    //   if (!error && response.statusCode == 200) {
-    //     beer_pairing.foodInfo = body;
-    //   }
-    // }) // end of api request to get list of restaurants
 
     res.render('show', beer_pairing);
   }) // end of db3 getting beer
