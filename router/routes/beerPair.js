@@ -33,11 +33,14 @@ router.get('/:id', function(req, res){
 
     request(urlStr, function(error, response, body){
       if (!error && response.statusCode == 200) {
+        console.log('GOOOAL');
+        console.log('latitute: ',body.lat);
+        console.log('longitute: ',body.lng);
         urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+body.lat+','+body.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
+        console.log(urlStr)
       }
     }); // end of api call to change user zipcode to longitute and latitude
 
-    console.log(urlStr)
     // request(urlStr, function(error, response, body) {
     //   if (!error && response.statusCode == 200) {
     //     beer_pairing.foodInfo = body;
