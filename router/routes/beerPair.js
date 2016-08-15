@@ -5,6 +5,7 @@ const pgp = require('pg-promise')();
 const db3 = pgp(process.env.DATABASE_URL);
 // const db3 = pgp('postgres://youngwoo@localhost:5432/auth');
 const mustache = require('mustache-express');
+var request = require('request');
 
 router.delete('/:id', function(req, res){
   var id = req.params.id;
@@ -28,7 +29,7 @@ router.get('/:id', function(req, res){
     };
     // grabbed the specific beer based on the id and store info to beer_pairing
 
-    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:10003&key='+process.env.KEY;
+    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
 
     console.log(urlStr);
 
