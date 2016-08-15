@@ -23,7 +23,8 @@ var login = function(req, res, next){
       function(err, cmp){
         if(cmp){
           req.session.user = {
-            'email': user.email
+            'email': user.email,
+            'zipcode': user.zipcode
           };
           next();
         } else {
