@@ -33,10 +33,12 @@ router.get('/:id', function(req, res){
 
     request(urlStr, function(error, response, body){
       if (!error && response.statusCode == 200) {
+        console.log('----------------- START HERE ---------------');
         console.log(JSON.parse(body));
-        // body = JSON.parse(body);
+        var bodyparsed = JSON.parse(body);
+        location.lat = bodyparsed.results[0].geometry.location.lat;
+        console.log(location.lat);
 
-        // console.log('latitute: ',body.results[0].geometry.location.lat);
 
 
         // console.log('longitute: ',body.results[0].geometry.location.lng);
