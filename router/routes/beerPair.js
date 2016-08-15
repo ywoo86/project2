@@ -44,7 +44,7 @@ router.get('/:id', function(req, res){
           if (!error && response.statusCode == 200) {
             // var foodInfo ={};
             var bodyparsed = JSON.parse(body);
-            beer_pairing.foodInfo = body;
+            beer_pairing.foodInfo = bodyparsed;
             console.log('----------------UPTOHERE-------------');
             console.log(beer_pairing);
           }
