@@ -37,15 +37,12 @@ router.get('/:id', function(req, res){
       }
     }); // end of api call to change user zipcode to longitute and latitude
 
-
-    request(urlStr, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        beer_pairing.foodInfo = body;
-
-        console.log(beer_pairing);
-        // res.render('show', beer_pairing);
-      }
-    }) // end of api request to get list of restaurants
+    console.log(urlStr)
+    // request(urlStr, function(error, response, body) {
+    //   if (!error && response.statusCode == 200) {
+    //     beer_pairing.foodInfo = body;
+    //   }
+    // }) // end of api request to get list of restaurants
 
     res.render('show', beer_pairing);
   }) // end of db3 getting beer
