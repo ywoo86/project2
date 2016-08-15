@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/db');
 const pgp = require('pg-promise')();
-// const db3 = pgp(process.env.DATABASE_URL);
-const db3 = pgp('postgres://youngwoo@localhost:5432/auth');
+const db3 = pgp(process.env.DATABASE_URL);
+// const db3 = pgp('postgres://youngwoo@localhost:5432/auth');
 const mustache = require('mustache-express');
 
 router.delete('/:id', function(req, res){
@@ -14,12 +14,11 @@ router.delete('/:id', function(req, res){
   })
 })
 
-
-
-
 router.get('/:id', function(req, res){
   var id = req.params.id;
-  console.log('beer = ', id);
+  var email = req.session.user.email;
+  var urlStr = '';
+  var location = {};
 
   db3.one('SELECT * FROM beers WHERE id = $1', [id])
   .then(function(beerData){
@@ -27,20 +26,27 @@ router.get('/:id', function(req, res){
     var beer_pairing = {
       'beerInfo': beerData
     };
-    console.log(beer_pairing);
 
-    var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.739885,-73.990082&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
+    var zip = db3.one('SELECT zipcode FROM users WHERE email = $1', [email]);
+    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
 
-    // request(url, function(error, response, body) {
-    //   if (!error && response.statusCode == 200) {
-    //     console.log(body);
-    //     beer_pairing.foodInfo = body;
-    //     res.render('show', beer_pairing);
-    //   }
+    request(url, function(error, response, body){
+      if (!error && response.statusCode == 200) {
+        location.lat = body.results[0].geometry.location.lat;
+        location.lng = body.results[0].geometry.location.lng;
+      }
+    }) // end of api call to change user zipcode to longitute and latitude
 
-    // }) // end of request
+    urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
 
-    res.render('show', beer_pairing);
+    request(url, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        beer_pairing.foodInfo = body;
+        res.render('show', beer_pairing);
+      }
+    }) // end of api request to get list of restaurants
+
+    // res.render('show', beer_pairing);
   }) // end of db3 getting beer
 }) // end of router get request
 

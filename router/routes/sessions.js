@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pgp = require('pg-promise')();
 const db = require('../../db/db');
-const db1 = pgp('postgres://youngwoo@localhost:5432/auth');
+// const db1 = pgp('postgres://youngwoo@localhost:5432/auth');
+const db1 = pgp(process.env.DATABASE_URL);
 
 router.get('/new', function(req, res){
   var error = req.flash('error')[0];
@@ -25,7 +26,6 @@ router.get('/edit', function(req, res){
     res.render('sessions/show', userInfo);
   })
 });
-
 
 router.post('/edit/:id', function(req, res){
   var user = req.body;
