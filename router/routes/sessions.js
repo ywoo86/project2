@@ -27,7 +27,7 @@ router.get('/edit', function(req, res){
   })
 });
 
-router.post('/edit/:id', function(req, res){
+  router.post('/edit/:id', function(req, res){
   var user = req.body;
   var id = req.params.id;
   db1.none("UPDATE users SET name=$1, zipcode=$2, email=$3 WHERE id=$4", [user.name, user.zipcode, user.email, id])
