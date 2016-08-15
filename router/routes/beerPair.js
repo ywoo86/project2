@@ -26,11 +26,12 @@ router.get('/:id', function(req, res){
     var beer_pairing = {
       'beerInfo': beerData
     };
+    console.log('weve made it this far');
 
-    var zip = db3.one('SELECT zipcode FROM users WHERE email = $1', [email]);
-    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
-    console.log('zip from db: ', zip);
-    console.log('1st URL: ',urlStr);
+    // var zip = db3.one('SELECT zipcode FROM users WHERE email = $1', [email]);
+    // urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
+    // console.log('zip from db: ', zip);
+    // console.log('1st URL: ',urlStr);
 
     // request(urlStr, function(error, response, body){
     //   if (!error && response.statusCode == 200) {
