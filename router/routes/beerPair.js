@@ -28,7 +28,7 @@ router.get('/:id', function(req, res){
     };
     // grabbed the specific beer based on the id and store info to beer_pairing
 
-    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
+    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:10003&key='+process.env.KEY;
 
     console.log(urlStr);
 
