@@ -55,7 +55,8 @@ var create_user = function(req, res, next){
       next();
     }).then(function(user){
       req.session.user = {
-        'email': email
+        'email': email,
+        'zipcode': zipcode
       };
       next();
     });

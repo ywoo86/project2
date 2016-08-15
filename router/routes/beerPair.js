@@ -17,31 +17,28 @@ router.delete('/:id', function(req, res){
 router.get('/:id', function(req, res){
   var id = req.params.id;
   var email = req.session.user.email;
+  var zip = req.session.user.zipcode;
   var urlStr = '';
   var location = {};
 
   db3.one('SELECT * FROM beers WHERE id = $1', [id])
   .then(function(beerData){
-
     var beer_pairing = {
       'beerInfo': beerData
     };
+    // grabbed the specific beer based on the id and store info to beer_pairing
 
-    console.log(email);
+    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
 
-    // db3.one('SELECT zipcode FROM users WHERE email = $1', [email])
-    // .then(function(zip){
-    //   urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
-    //   console.log(urlStr);
-    //   console.log('we made it this far');
-    //   }) // end of api call to change user zipcode to longitute and latitude
-    // }); // end of db call for zipcode
+    request(urlStr, function(error, response, body){
+      if (!error && response.statusCode == 200) {
+        location.lat = body.results[0].geometry.location.lat;
+        location.lng = body.results[0].geometry.location.lng;
+      }
+    }); // end of api call to change user zipcode to longitute and latitude
 
-    // request(urlStr, function(error, response, body){
-    //   if (!error && response.statusCode == 200) {
-    //     location.lat = body.results[0].geometry.location.lat;
-    //     location.lng = body.results[0].geometry.location.lng;
-    //   }
+    console.log(location);
+
 
     // urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
 
