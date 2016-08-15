@@ -33,7 +33,7 @@ router.get('/:id', function(req, res){
 
     request(urlStr, function(error, response, body){
       if (!error && response.statusCode == 200) {
-        urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
+        urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+body.lat+','+body.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
       }
     }); // end of api call to change user zipcode to longitute and latitude
 
