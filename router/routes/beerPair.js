@@ -46,6 +46,9 @@ router.get('/:id', function(req, res){
             var bodyparsed = JSON.parse(body);
 
             beer_pairing.foodInfo = bodyparsed;
+
+            console.log(beer_pairing);
+            res.render('show', beer_pairing);
           }
         }) // end of api request to get list of restaurants
 
@@ -53,8 +56,6 @@ router.get('/:id', function(req, res){
     }); // end of api call to change user zipcode to longitute and latitude
 
 
-    console.log(beer_pairing);
-    res.render('show', beer_pairing);
   }) // end of db3 getting beer
 }) // end of router get request
 
