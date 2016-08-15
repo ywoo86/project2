@@ -27,13 +27,15 @@ router.get('/:id', function(req, res){
       'beerInfo': beerData
     };
 
-    db3.one('SELECT zipcode FROM users WHERE email = $1', [email])
-    .then(function(zip){
-      urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
-      console.log(urlStr);
-      console.log('we made it this far');
-      }) // end of api call to change user zipcode to longitute and latitude
-    }); // end of db call for zipcode
+    console.log(email);
+
+    // db3.one('SELECT zipcode FROM users WHERE email = $1', [email])
+    // .then(function(zip){
+    //   urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
+    //   console.log(urlStr);
+    //   console.log('we made it this far');
+    //   }) // end of api call to change user zipcode to longitute and latitude
+    // }); // end of db call for zipcode
 
     // request(urlStr, function(error, response, body){
     //   if (!error && response.statusCode == 200) {
