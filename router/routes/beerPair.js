@@ -53,7 +53,7 @@ router.get('/:id', function(req, res){
     // }) // end of api request to get list of restaurants
 
     res.render('show', beer_pairing);
-  // }) // end of db3 getting beer
+  }) // end of db3 getting beer
 }) // end of router get request
 
 module.exports = router;
