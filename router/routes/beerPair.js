@@ -35,11 +35,12 @@ router.get('/:id', function(req, res){
       if (!error && response.statusCode == 200) {
         console.log(JSON.parse(body));
         body = JSON.parse(body);
-        console.log('latitute: ',body.results[0].geometry.location.lat);
-        // location.lat = body.geometry.location.lat;
 
-        console.log('longitute: ',body.geometry.location.lng);
-        // location.lng = body.results[0].geometry.location.lng;
+        console.log('latitute: ',body.results[0].geometry.location.lat);
+
+
+        console.log('longitute: ',body.results[0].geometry.location.lng);
+
 
         // urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+body.lat+','+body.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
         // console.log(urlStr)
