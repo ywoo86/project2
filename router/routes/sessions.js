@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const pgp = require('pg-promise')();
 const db = require('../../db/db');
+const db1 = pgp('postgres://youngwoo@localhost:5432/auth');
 
 router.get('/new', function(req, res){
   var error = req.flash('error')[0];
@@ -16,18 +18,23 @@ router.get('/logout', db.logout, function(req, res){
   res.redirect('/');
 });
 
-// router.put('/edit', function(req, res){
-//   console.log('actually in the edit router section');
-//   var user = req.body;
-//   console.log(user);
-//   res.render('/show');
-//   // db.none("UPDATE users SET name=$1, email=$2, password=$3 WHERE id=$4",
-//   //   [user.name, user.email, user.password, user.id]).then(function(){
-//   //     console.log('update done');
-//   //     console.log(user);
-//   //     res.json(user);
-//   //     res.end();
-//   //   })
-// })
+router.get('/account', function(req, res){
+  var email = req.session.user.email;
+  db1.one("SELECT id, name, zipcode, email FROM users WHERE email = $1", [email])
+  .then(function(userInfo){
+    res.render('sessions/show', userInfo);
+  })
+});
+
+
+router.post('/account/:id', function(req, res){
+  var user = req.body;
+  var id = req.params.id;
+  db1.none("UPDATE users SET name=$1, zipcode=$2, email=$3 WHERE id=$4", [user.name, user.zipcode, user.email, id])
+  .then(function(){
+    res.redirect('/');
+  });
+});
+
 
 module.exports = router;

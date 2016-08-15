@@ -8,15 +8,47 @@
   <body>
     <div class="main-container">
       <div class="border-container">
-        <h1>Edit User Account</h1>
-        <form id="edituser" data-id={{id}}>
-          <label>Name: <input id="name" type="text" value="{{name}}"></label><br/>
-          <label>Email: <input id="email" type="text" value="{{email}}"></label><br/>
-          <label>Password: <input id="password" type="text" value="{{password}}"></label><br/>
-          <div class="col-lg-10 col-lg-offset-2">
-            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+        <h1>Edit Account Page</h1>
+        <div class="col-lg-6 center-block">
+          <div class="well bs-component">
+
+            <form class="form-horizontal" action="/sessions/edit/{{id}}" method="post">
+              <fieldset>
+
+                <legend>Edit User</legend>
+
+                <div class="form-group">
+                  <label for="inputName" class="col-lg-2 control-label">Name</label>
+                  <div class="col-lg-10">
+                    <input name="name" type="text" class="form-control" id="inputName" value="{{name}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputZip" class="col-lg-2 control-label">Zip</label>
+                  <div class="col-lg-10">
+                    <input name="zipcode" type="text" class="form-control" id="inputZip" value="{{zipcode}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                  <div class="col-lg-10">
+                    <input name="email" type="text" class="form-control" id="inputEmail" value="{{email}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Change</button>
+                  </div>
+                </div>
+
+              </fieldset>
+            </form>
+
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </body>

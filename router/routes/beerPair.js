@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/db');
 const pgp = require('pg-promise')();
-const db3 = pgp(process.env.DATABASE_URL);
+// const db3 = pgp(process.env.DATABASE_URL);
+const db3 = pgp('postgres://youngwoo@localhost:5432/auth');
 const mustache = require('mustache-express');
 
 router.delete('/:id', function(req, res){
@@ -37,7 +38,7 @@ router.get('/:id', function(req, res){
     //     res.render('show', beer_pairing);
     //   }
 
-    }) // end of request
+    // }) // end of request
 
     res.render('show', beer_pairing);
   }) // end of db3 getting beer

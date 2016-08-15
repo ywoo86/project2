@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script src="/js/key.js"></script>
+    <!-- <script src="/js/key.js"></script> -->
     <script src="/js/script.js"></script>
   </head>
 
@@ -18,7 +18,7 @@
       <div class="nav-wrapper">
         <a href="/" class="brand-logo"><img class="beer-logo" src="https://cdn.shopify.com/s/files/1/1378/6333/collections/beer_grande.png?v=1468119341" /></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">Account</a></li>
+          <li><a href="/sessions/account"><i class="material-icons">settings</i></a></li>
           <li><a href="/sessions/logout">Logout</a></li>
         </ul>
       </div>
@@ -43,7 +43,6 @@
             </div>
             <div class="card-action">
               <a id="deletebeer" data-id={{id}} href="#">Delete</a>
-              <a id="editbeer" data-id={{id}} href="#">Edit</a>
             </div>
               {{/beerInfo}}
           </div>
