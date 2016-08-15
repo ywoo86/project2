@@ -19,6 +19,8 @@ router.get('/:id', function(req, res){
   var id = req.params.id;
   var email = req.session.user.email;
   var zip = req.session.user.zipcode;
+  var urlStr = '';
+  // var location = {};
 
   db3.one('SELECT * FROM beers WHERE id = $1', [id])
   .then(function(beerData){
@@ -27,14 +29,16 @@ router.get('/:id', function(req, res){
     };
     // grabbed the specific beer based on the id and store info to beer_pairing
 
-    var urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
+    urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
 
     request(urlStr, function(error, response, body){
       if (!error && response.statusCode == 200) {
+        var location = {};
         console.log('----------------- START HERE ---------------');
         var bodyparsed = JSON.parse(body);
-        var location.lat = bodyparsed.results[0].geometry.location.lat;
-        console.log(location.lat);
+        location.lat = bodyparsed.results[0].geometry.location.lat;
+        console.log('------------- location object --------------');
+        console.log(location);
 
 
 
