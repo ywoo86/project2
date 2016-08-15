@@ -31,23 +31,21 @@ router.get('/:id', function(req, res){
 
     urlStr = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
 
-    console.log(urlStr);
-
     request(urlStr, function(error, response, body){
       if (!error && response.statusCode == 200) {
-        console.log('success');
+        urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
       }
     }); // end of api call to change user zipcode to longitute and latitude
 
 
-    // urlStr = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location.lat+','+location.lng+'&radius=500&type=restaurant&name='+beerData.cuisine+'&key='+process.env.KEY;
+    request(urlStr, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        beer_pairing.foodInfo = body;
 
-    // request(urlStr, function(error, response, body) {
-    //   if (!error && response.statusCode == 200) {
-    //     beer_pairing.foodInfo = body;
-    //     res.render('show', beer_pairing);
-    //   }
-    // }) // end of api request to get list of restaurants
+        console.log(beer_pairing);
+        // res.render('show', beer_pairing);
+      }
+    }) // end of api request to get list of restaurants
 
     res.render('show', beer_pairing);
   }) // end of db3 getting beer
