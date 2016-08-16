@@ -23,6 +23,8 @@ router.get('/edit', function(req, res){
   var email = req.session.user.email;
   db1.one("SELECT id, name, zipcode, email FROM users WHERE email = $1", [email])
   .then(function(userInfo){
+    // req.session.user.zipcode = userInfo.zipcode;
+    console.log(userInfo.zipcode);
     res.render('sessions/show', userInfo);
   })
 });
