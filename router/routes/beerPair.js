@@ -6,14 +6,6 @@ const db3 = pgp(process.env.DATABASE_URL);
 const mustache = require('mustache-express');
 var request = require('request');
 
-// router.delete('/:id', function(req, res){
-//   var id = req.params.id;
-
-//   db3.none("DELETE FROM beers WHERE id=$1", [id]).then(function(){
-//     res.send({'delete': true});
-//   })
-// })
-
 router.get('/:id', function(req, res){
   var id = req.params.id;
   var email = req.session.user.email;
