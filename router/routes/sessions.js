@@ -53,14 +53,20 @@ router.get('/queue/:id', function(req, res){
 });
 
 router.get('/queue', function(req, res){
-  db1.any("SELECT beers.name, beers.category, beers.brewery, beers.country, beers.flavors FROM beers JOIN favorites ON beer_id=beers.id WHERE user_id=$1", [req.session.user.id])
+  db1.any("SELECT favorites.id, beers.name, beers.category, beers.brewery, beers.country, beers.flavors FROM beers JOIN favorites ON beer_id=beers.id WHERE user_id=$1", [req.session.user.id])
   .then(function(beerQueue){
     console.log('this is beerQueue: ', beerQueue);
     res.render('queue', {'beerFavorites':beerQueue});
   });
 });
 
-
+router.get('queue/delete/:id', function(req, res){
+  var id = req.params.id;
+  dbq.none("DELETE FROM favorites WHERE id = $1", [id])
+  .then(function(){
+    res.redirect('queue');
+  });
+});
 
 
 module.exports = router;
