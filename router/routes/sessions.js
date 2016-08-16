@@ -51,7 +51,6 @@ router.get('/queue/:id', function(req, res){
     res.send('beer added to queue');
   });
 });
-})
 
 
 
