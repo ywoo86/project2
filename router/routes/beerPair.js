@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../../db/db');
 const pgp = require('pg-promise')();
 const db3 = pgp(process.env.DATABASE_URL);
-// const db3 = pgp('postgres://youngwoo@localhost:5432/auth');
 const mustache = require('mustache-express');
 var request = require('request');
 

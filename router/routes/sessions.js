@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pgp = require('pg-promise')();
 const db = require('../../db/db');
-// const db1 = pgp('postgres://youngwoo@localhost:5432/auth');
 const db1 = pgp(process.env.DATABASE_URL);
 
 router.get('/new', function(req, res){
@@ -33,7 +32,6 @@ router.get('/edit', function(req, res){
   db1.none("UPDATE users SET name=$1, zipcode=$2, email=$3 WHERE id=$4", [user.name, user.zipcode, user.email, id])
   .then(function(){
     req.session.user.zipcode = user.zipcode;
-    // console.log(user.zipcode);
     res.redirect('/');
   });
 });

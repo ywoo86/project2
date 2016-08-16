@@ -1,6 +1,5 @@
 const pgp = require('pg-promise')();
 const db = pgp(process.env.DATABASE_URL);
-// const db = pgp('postgres://youngwoo@localhost:5432/auth');
 
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
