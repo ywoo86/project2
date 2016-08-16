@@ -6,7 +6,7 @@ const db2 = pgp(process.env.DATABASE_URL);
 
 router.get('/:id', function(req, res){
   var id = req.params.id;
-  console.log(id)
+
   db2.any('SELECT * FROM beers WHERE category = $1 LIMIT 10', [id])
   .then(function(beerData){
     res.send(beerData);

@@ -38,8 +38,6 @@ router.get('/:id', function(req, res){
 
             beer_pairing.foodInfo = bodyparsed;
 
-            console.log(beer_pairing);
-            // res.render('show', beer_pairing);
             res.render('show', {'beerInfo': beerData, 'foodInfo': bodyparsed.results })
           }
         }) // end of api request to get list of restaurants
