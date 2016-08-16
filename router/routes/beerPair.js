@@ -31,7 +31,7 @@ router.get('/:id', function(req, res){
 
     urlStr1 = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:'+zip+'&key='+process.env.KEY;
 
-    request(urlStr1, function(error, response, bodyparsed){
+    request(urlStr1, function(error, response, body){
       if (!error && response.statusCode == 200) {
         var location = {};
         var bodyparsed = JSON.parse(body);
@@ -52,7 +52,6 @@ router.get('/:id', function(req, res){
             res.render('show', {'beerInfo': beerData, 'foodInfo': bodyparsed.results })
           }
         }) // end of api request to get list of restaurants
-
       }
     }); // end of api call to change user zipcode to longitute and latitude
 
