@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <!-- <script src="/js/key.js"></script> -->
     <script src="/js/script.js"></script>
   </head>
 
@@ -18,8 +17,9 @@
       <div class="nav-wrapper">
         <a href="/" class="brand-logo"><img class="beer-logo" src="https://cdn.shopify.com/s/files/1/1378/6333/collections/beer_grande.png?v=1468119341" /></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/sessions/edit"><i class="material-icons">settings</i></a></li>
-          <li><a href="/sessions/logout">Logout</a></li>
+          <li><a href="#"><i class="material-icons teal-text">star</i></a></li>
+          <li><a href="/sessions/edit"><i class="material-icons teal-text">settings</i></a></li>
+          <li><a class="teal-text" href="/sessions/logout">Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="input-field col s4">
           <select class="selected-beer-category">
-            <option value="" disabled selected class="beerchoice">Choose your beer type</option>
+            <option value="" disabled selected>Choose your beer type</option>
             <option value="British Ale">British Ale</option>
             <option value="Irish Ale">Irish Ale</option>
             <option value="North American Ale">North American Ale</option>
