@@ -24,7 +24,8 @@ var login = function(req, res, next){
         if(cmp){
           req.session.user = {
             'email': user.email,
-            'zipcode': user.zipcode
+            'zipcode': user.zipcode,
+            'id': user.id
           };
           next();
         } else {
@@ -46,6 +47,7 @@ var create_user = function(req, res, next){
   var zipcode = req.body.zipcode;
   var email = req.body.email;
   var password = req.body.password;
+  var id = req.body.id;
 
   bcrypt.hash(password, 10, function(err, hashed_password){
     db.none(
@@ -57,7 +59,8 @@ var create_user = function(req, res, next){
     }).then(function(user){
       req.session.user = {
         'email': email,
-        'zipcode': zipcode
+        'zipcode': zipcode,
+        'id': id
       };
       next();
     });

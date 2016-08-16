@@ -20,9 +20,11 @@ router.get('/logout', db.logout, function(req, res){
 });
 
 router.get('/edit', function(req, res){
-  var email = req.session.user.email;
-  db1.one("SELECT id, name, zipcode, email FROM users WHERE email = $1", [email])
+  // var email = req.session.user.email;
+  var id = req.session.user.id;
+  db1.one("SELECT id, name, zipcode, email FROM users WHERE id = $1", [id])
   .then(function(userInfo){
+
     res.render('sessions/show', userInfo);
   })
 });
@@ -32,6 +34,9 @@ router.get('/edit', function(req, res){
   var id = req.params.id;
   db1.none("UPDATE users SET name=$1, zipcode=$2, email=$3 WHERE id=$4", [user.name, user.zipcode, user.email, id])
   .then(function(){
+    req.session.user.email = user.email;
+    req.session.user.name = user.name;
+    req.session.user.zipcode = user.zipcode;
     res.redirect('/');
   });
 });
