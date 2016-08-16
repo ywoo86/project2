@@ -26,31 +26,31 @@ $(function(){
       })
   })
 
-  $('#deletebeer').on('click', function(event){
-    event.preventDefault();
+  // $('#deletebeer').on('click', function(event){
+  //   event.preventDefault();
 
-    var id = $(this).attr('data-id');
-    console.log('this is in this: ',id);
+  //   var id = $(this).attr('data-id');
+  //   console.log('this is in this: ',id);
 
-    $.ajax({
-      "url":"http://localhost:3000/beers/"+id,
-      "method": "delete",
-      "success": function(data){
-        console.log('its gone');
-        var $card = $('.whole-card');
-        var $h1 = $('h1');
-        $h1.text('Delete Successful');
-        $card.remove();
+  //   $.ajax({
+  //     "url":"http://localhost:3000/beers/"+id,
+  //     "method": "delete",
+  //     "success": function(data){
+  //       console.log('its gone');
+  //       var $card = $('.whole-card');
+  //       var $h1 = $('h1');
+  //       $h1.text('Delete Successful');
+  //       $card.remove();
 
-        setTimeout(function(){
-          location.replace('/');
-        }, 1000);
-      },
-      "error": function(){
-        console.log('error');
-      }
-    })
-  })
+  //       setTimeout(function(){
+  //         location.replace('/');
+  //       }, 1000);
+  //     },
+  //     "error": function(){
+  //       console.log('error');
+  //     }
+  //   })
+  // })
 
   $('#edituser').on('submit', function(event){
     event.preventDefault();

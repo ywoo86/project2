@@ -36,6 +36,14 @@ router.post('/edit/:id', function(req, res){
   });
 });
 
+router.post('/delete/:id', function(req, res){
+  var id = req.params.id;
+  db1.none("DELETE FROM beers WHERE id = $1", [id])
+  .then(function(){
+    res.redirect('/');
+  })
+})
+
 
 
 module.exports = router;
