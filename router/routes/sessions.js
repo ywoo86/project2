@@ -41,8 +41,19 @@ router.get('/delete/:id', function(req, res){
   db1.none("DELETE FROM beers WHERE id = $1", [id])
   .then(function(){
     res.redirect('/');
-  })
+  });
+});
+
+router.get('/queue/:id', function(req, res){
+  var id = req.params.id;
+  db1.none('INSERT INTO favorites(user_id, beer_id) VALUES($1, $2)', [req.session.user.id, id])
+  .then(function(){
+    res.send('beer added to queue');
+  });
+});
 })
+
+
 
 
 
