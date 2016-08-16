@@ -30,7 +30,7 @@ $(function(){
     event.preventDefault();
 
     var id = $(this).attr('data-id');
-    console.log(id);
+    console.log('this is in this: ',id);
 
     $.ajax({
       "url":"http://localhost:3000/beers/"+id,
