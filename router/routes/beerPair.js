@@ -47,7 +47,7 @@ router.get('/:id', function(req, res){
 
             beer_pairing.foodInfo = bodyparsed;
 
-            // console.log(beer_pairing);
+            console.log(beer_pairing);
             // res.render('show', beer_pairing);
             res.render('show', {'beerInfo': beerData, 'foodInfo': bodyparsed.results })
           }
