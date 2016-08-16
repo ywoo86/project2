@@ -62,7 +62,7 @@ router.get('/queue', function(req, res){
 
 router.get('queue/delete/:id', function(req, res){
   var id = req.params.id;
-  dbq.none("DELETE FROM favorites WHERE id = $1", [id])
+  db1.none("DELETE FROM favorites WHERE id = $1", [id])
   .then(function(){
     res.redirect('queue');
   });
