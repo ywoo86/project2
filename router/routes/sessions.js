@@ -48,7 +48,7 @@ router.get('/queue/:id', function(req, res){
   var id = req.params.id;
   db1.none('INSERT INTO favorites(user_id, beer_id) VALUES($1, $2)', [req.session.user.id, id])
   .then(function(){
-    res.end();
+    res.redirect('/');
   });
 });
 
