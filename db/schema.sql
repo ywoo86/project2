@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS beers;
-DROP TABLE IF EXISTS favorites;
+-- DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS beers;
+-- DROP TABLE IF EXISTS favorites;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -24,5 +24,5 @@ CREATE TABLE beers (
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
-  beer VARCHAR(255)
+  beer_id INTEGER REFERENCES beers(id)
 );
