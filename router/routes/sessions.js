@@ -60,7 +60,7 @@ router.get('/queue', function(req, res){
   });
 });
 
-router.get('queue/delete/:id', function(req, res){
+router.get('/queue/delete/:id', function(req, res){
   var id = req.params.id;
   db1.none("DELETE FROM favorites WHERE id = $1", [id])
   .then(function(){
