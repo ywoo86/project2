@@ -20,3 +20,9 @@ CREATE TABLE beers (
   flavors VARCHAR(255),
   cuisine VARCHAR(255)
 );
+
+CREATE TABLE favorites (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  beer VARCHAR(255)
+);
