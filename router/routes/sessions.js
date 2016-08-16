@@ -32,8 +32,8 @@ router.get('/edit', function(req, res){
   var id = req.params.id;
   db1.none("UPDATE users SET name=$1, zipcode=$2, email=$3 WHERE id=$4", [user.name, user.zipcode, user.email, id])
   .then(function(){
-    // req.session.user.zipcode = user.zipcode;
-    console.log(user.zipcode);
+    req.session.user.zipcode = user.zipcode;
+    // console.log(user.zipcode);
     res.redirect('/');
   });
 });
