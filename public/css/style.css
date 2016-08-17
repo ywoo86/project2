@@ -48,3 +48,7 @@ a {
 .beerchoice {
   color:  #fff;
 }
+
+.favbeer {
+  max-height: 200px;
+}
